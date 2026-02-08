@@ -1,7 +1,7 @@
 import time
 import math as m
-#import psutil
-# import os
+import psutil
+import os
 from attribute_rect import block
 from attribute_rect import LineEquation as leq
 import matplotlib.colors as mcolors
@@ -17,8 +17,8 @@ def equation_creator(x1, y1, x2, y2):
 
 def ext_blocks(filename):
     start_time = time.time()
-    #process = psutil.Process(os.getpid())
-    #mem_before = process.memory_info().rss / 1024 / 1024  # MB
+    process = psutil.Process(os.getpid())
+    mem_before = process.memory_info().rss / 1024  # kB
     
     blocks_list = []
     colour_code = 0
@@ -47,16 +47,12 @@ def ext_blocks(filename):
         print(f"Error: File '{filename}' not found.")
         return []
     
-    #mem_after = process.memory_info().rss / 1024 / 1024  # MB
+    mem_after = process.memory_info().rss / 1024  # kB
     elapsed_time = time.time() - start_time
     
     print(f"\nData Extraction Summary:")
     print(f"Rectangles loaded: {len(blocks_list)}")
-    #print(f"Memory used: {mem_after - mem_before:.4f} MB")
+    print(f"Memory used: {mem_after - mem_before:.4f} kB")
     print(f"Time taken for extraction: {elapsed_time:.4f} seconds")
     
     return blocks_list,elapsed_time
-
-# if __name__ == "__main__":
-#     filename = input("Enter the filename: ")
-#     rects = ext_blocks(filename)

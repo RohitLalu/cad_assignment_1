@@ -1,5 +1,7 @@
 
 import time
+import psutil
+import os
 import matplotlib.pyplot as plt
 import extract_data as ed
 import plot_blocks as pb
@@ -10,6 +12,8 @@ no_overlap_in_block_list=[]
 
 def full_overlap_q5():
     #pre processing
+    process = psutil.Process(os.getpid())
+    mem_before = process.memory_info().rss / 1024  # kB
     filename = input("Enter the filename: ")
     blocks_list,t1 = ed.ext_blocks(filename) 
 
@@ -34,6 +38,7 @@ def full_overlap_q5():
         overlap_list = []
     
     elapsed_time = time.time() - start_time
+    mem_after = process.memory_info().rss / 1024  # kB
     print_set(overlapping_blocks)
     print(f"\nTime taken for data processing in Q5: {elapsed_time:.4f} seconds")
     #plot both graphs
@@ -41,6 +46,7 @@ def full_overlap_q5():
     t3=pb.plot_blocks(all_overlapping_blocks, show=False,title="Fully Overlapping Blocks")
     plt.show()
     print(f"\nTotal time taken for Q5: {t1+elapsed_time+t2+t3:.4f} seconds")
+    print(f"Memory used: {mem_after - mem_before:.4f} kB")
 
 if __name__ == "__main__":
     full_overlap_q5()
