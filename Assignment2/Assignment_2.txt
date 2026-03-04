@@ -1,0 +1,19 @@
+
+
+Data given: A set of nodes in a circuit layout and their coordinates in the following format {number of nodes n, x1, y1, x2, y2, x3, y3, ...xn, yn}.
+You may use Elmore's delay model to find the delay of each segment of wire. Assume all the wires are on the same metal layer (M1) and the width of each segment of wire is 1 unit. The resistance is 1 Ohm per unit length and 1fF per unit length of wire.
+
+Expected:
+At the end of solution to each of the question, compute and print the memory usage and time taken to execute the code.
+Print the coordinates of the trunk in the format {x1, y1, x2, y2}. Also plot the final Steiner tree with the length of each segment and delay marked along each segment. Mark the given points and the Steiner points with different colours.
+
+1. Determine the coordinates of the optimal trunk for the Steiner tree that minimises the total wire length. The solution should consider the Manhattan distance between nodes to simulate wire routing. Assume the clock generator is placed at the left most end of the trunk, find the critical net of the final Steiner Tree.
+
+
+2. In the above problem statement the clock generator is placed at the left most end of the trunk and the delay from the clock generator to each node is calculated. Now for the Steiner tree created in the above problem, identify a new location for the placement of the clock generator such that the clock skew is minimal. The new location of the clock generator need not exist on the Steiner tree, it could could be at any new point other than the given points in the list, and connected separately to the Steiner tree using one or more segments of wire. Assume that the delay introduced by these additional segments of wire is zero. Print the coordinates of the clock generator in the format {x, y}. Plot the Steiner tree with the clock generator.
+
+
+3. Generate a set of random number of points (number of points greater than 25) and each point(i) is having some random coordinates {xi, yi}. Group the generated points into suitable number of clusters based on a suitable clustering algorithm. Create a Steiner tree with multiple trunks. Plot the Steiner tree. Identify a suitable point for the location of the clock generator as in problem no. 2.
+
+
+
